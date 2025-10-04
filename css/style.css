@@ -1,0 +1,80 @@
+* {
+    padding: 0%;
+    margin: 0;
+}
+
+.body {
+    background: url("../img/background.jpg");
+    min-height: 100vh;
+    background-size: 100vw 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#board {
+    background: url("../img/board.jpg");
+    width: 90vmin;
+    height: 92vmin;
+    border: solid black 2px;
+    display: grid;
+    grid-template-rows: repeat(18, 1fr);
+    grid-template-columns: repeat(18, 1fr);
+}
+
+#scoreBox {
+    background-color: rgb(107, 188, 220);
+    border: 0.25vmin solid white;
+    border-radius: 12px;
+    width: 100px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    position: fixed;
+    top: 50px;
+    right: 200px;
+    z-index: 1000;
+}
+
+
+
+
+.head {
+
+    /* background-color: #e43737;
+    border: 0.25vmin solid white;
+    border-radius: 12px; */
+    background-image: url("/SnakeGame/img/pngaaa.com-1092994.png");
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.snake {
+
+    /* background-image: url("/SnakeGame/img/Snake\ sprite\ sheet.png");
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; */
+    background-color: rgb(134, 231, 78);
+    /* border: 0.25vmin solid white; */
+    border-radius: 100px;
+
+}
+
+.food {
+    background-image: url("/SnakeGame/img/apple.png");
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
