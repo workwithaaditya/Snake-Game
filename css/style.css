@@ -1341,3 +1341,37 @@
         font-size: 7px;
     }
 }
+
+/* ===== CREDITS ===== */
+.credits {
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: rgba(0, 255, 255, 0.6);
+    text-align: right;
+    z-index: 1000;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+.credit-link {
+    color: #00ffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+.credit-link:hover {
+    color: #ff00ff;
+    text-shadow: 0 0 15px rgba(255, 0, 255, 0.8);
+    text-decoration: underline;
+}
+
+.credit-note {
+    font-size: 8px;
+    color: rgba(255, 0, 255, 0.5);
+    font-style: italic;
+    display: inline-block;
+    margin-top: 5px;
+}
