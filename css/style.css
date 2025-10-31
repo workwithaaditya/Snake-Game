@@ -942,12 +942,16 @@
     background: linear-gradient(135deg, rgba(10, 14, 39, 0.95), rgba(20, 25, 50, 0.95));
     border: 3px solid #7800ff;
     border-radius: 12px;
-    padding: 8px;
-    width: 120px;
+    padding: 10px 12px;
+    /* Responsive width so left panel scales with viewport but stays within reasonable limits */
+    width: clamp(140px, 12vw, 300px);
+    max-height: 80vh;
+    overflow-y: auto;
     box-shadow: 
         0 0 30px rgba(120, 0, 255, 0.5),
         inset 0 0 20px rgba(120, 0, 255, 0.1);
     z-index: 100;
+    transition: transform 200ms ease, box-shadow 200ms ease;
 }
 
 .panel-section {
@@ -960,7 +964,8 @@
 
 .panel-title {
     font-family: 'Press Start 2P', cursive;
-    font-size: 8px;
+    /* responsive tiny heading */
+    font-size: clamp(9px, 1.2vw, 12px);
     color: #00ffff;
     text-align: center;
     margin-bottom: 12px;
@@ -974,7 +979,7 @@
 }
 
 .life-heart {
-    font-size: 16px;
+    font-size: clamp(14px, 2.2vw, 22px);
     animation: heartBeat 1.5s ease-in-out infinite;
     filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5));
 }
@@ -1002,7 +1007,7 @@
 }
 
 .powerup-icon {
-    font-size: 22px;
+    font-size: clamp(20px, 3.2vw, 36px);
     margin-bottom: 8px;
     animation: float 3s ease-in-out infinite;
     filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5));
@@ -1067,7 +1072,8 @@
     border: 3px solid #ff00aa;
     border-radius: 12px;
     padding: 6px;
-    max-width: 320px;
+    /* responsive block width so cards stay proportional to viewport */
+    width: clamp(220px, 20vw, 420px);
     box-shadow: 
         0 0 30px rgba(255, 0, 170, 0.5),
         inset 0 0 20px rgba(255, 0, 170, 0.1);
@@ -1097,7 +1103,8 @@
     border: 2px solid;
     border-radius: 10px;
     padding: 4px;
-    width: 70px;
+    /* responsive card width */
+    width: clamp(60px, 6.5vw, 110px);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -1153,8 +1160,8 @@
 
 .tier-badge {
     position: relative;
-    width: 32px;
-    height: 32px;
+    width: clamp(28px, 3.2vw, 44px);
+    height: clamp(28px, 3.2vw, 44px);
     margin: 0 auto 6px;
     display: flex;
     align-items: center;
@@ -1162,7 +1169,7 @@
 }
 
 .tier-icon {
-    font-size: 18px;
+    font-size: clamp(14px, 2.2vw, 26px);
     z-index: 2;
     position: relative;
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
@@ -1252,7 +1259,7 @@
 
 .tier-name {
     font-family: 'Press Start 2P', cursive;
-    font-size: 7px;
+    font-size: clamp(7px, 0.9vw, 12px);
     font-weight: bold;
     margin-bottom: 4px;
 }
