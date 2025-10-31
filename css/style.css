@@ -203,20 +203,25 @@
 
 .sassy-bot {
     position: fixed;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
+    right: 30px;
+    bottom: 30px;
+    left: auto;
+    top: auto;
+    transform: none;
     background-color: rgba(0, 0, 0, 0.9);
     border: 3px solid #ff4d4d;
     border-radius: 15px;
-    padding: 20px;
-    width: 280px;
+    padding: 10px;
+    width: 180px;
     z-index: 1000;
     transition: all 0.8s ease-in-out;
 }
 
 .sassy-bot.show {
     left: 50%;
+    bottom: auto;
+    right: auto;
+    top: 50%;
     transform: translate(-50%, -50%);
 }
 
@@ -227,6 +232,8 @@
 .sassy-bot.center-popup {
     left: 50% !important;
     top: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
     transform: translate(-50%, -50%) scale(1.2) !important;
     background-color: rgba(0, 0, 0, 0.95);
     box-shadow: 0 0 50px rgba(255, 77, 77, 0.5);
@@ -921,8 +928,8 @@
     background: linear-gradient(135deg, rgba(10, 14, 39, 0.95), rgba(20, 25, 50, 0.95));
     border: 3px solid #7800ff;
     border-radius: 12px;
-    padding: 15px;
-    width: 160px;
+    padding: 8px;
+    width: 120px;
     box-shadow: 
         0 0 30px rgba(120, 0, 255, 0.5),
         inset 0 0 20px rgba(120, 0, 255, 0.1);
@@ -939,7 +946,7 @@
 
 .panel-title {
     font-family: 'Press Start 2P', cursive;
-    font-size: 9px;
+    font-size: 8px;
     color: #00ffff;
     text-align: center;
     margin-bottom: 12px;
@@ -949,11 +956,11 @@
 .lives-display {
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 4px;
 }
 
 .life-heart {
-    font-size: 24px;
+    font-size: 16px;
     animation: heartBeat 1.5s ease-in-out infinite;
     filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5));
 }
@@ -981,7 +988,7 @@
 }
 
 .powerup-icon {
-    font-size: 36px;
+    font-size: 22px;
     margin-bottom: 8px;
     animation: float 3s ease-in-out infinite;
     filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5));
@@ -1045,8 +1052,8 @@
     background: linear-gradient(135deg, rgba(10, 14, 39, 0.95), rgba(20, 25, 50, 0.95));
     border: 3px solid #ff00aa;
     border-radius: 12px;
-    padding: 12px;
-    max-width: 420px;
+    padding: 6px;
+    max-width: 320px;
     box-shadow: 
         0 0 30px rgba(255, 0, 170, 0.5),
         inset 0 0 20px rgba(255, 0, 170, 0.1);
@@ -1055,7 +1062,7 @@
 
 .tier-header {
     font-family: 'Press Start 2P', cursive;
-    font-size: 10px;
+    font-size: 8px;
     color: #ff00ff;
     text-align: center;
     margin-bottom: 12px;
@@ -1066,7 +1073,7 @@
 
 .tier-cards {
     display: flex;
-    gap: 8px;
+    gap: 4px;
     flex-wrap: nowrap;
     justify-content: center;
 }
@@ -1075,8 +1082,8 @@
     background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
     border: 2px solid;
     border-radius: 10px;
-    padding: 8px;
-    width: 100px;
+    padding: 4px;
+    width: 70px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -1132,8 +1139,8 @@
 
 .tier-badge {
     position: relative;
-    width: 50px;
-    height: 50px;
+    width: 32px;
+    height: 32px;
     margin: 0 auto 6px;
     display: flex;
     align-items: center;
@@ -1141,7 +1148,7 @@
 }
 
 .tier-icon {
-    font-size: 28px;
+    font-size: 18px;
     z-index: 2;
     position: relative;
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
@@ -1231,7 +1238,7 @@
 
 .tier-name {
     font-family: 'Press Start 2P', cursive;
-    font-size: 10px;
+    font-size: 7px;
     font-weight: bold;
     margin-bottom: 4px;
 }
@@ -1253,14 +1260,14 @@
 
 .tier-level {
     font-family: 'Press Start 2P', cursive;
-    font-size: 7px;
+    font-size: 5px;
     color: #888;
     margin-bottom: 3px;
 }
 
 .tier-tagline {
     font-family: 'Press Start 2P', cursive;
-    font-size: 6px;
+    font-size: 4px;
     color: #ffd700;
     font-style: italic;
     margin-bottom: 5px;
@@ -1269,7 +1276,7 @@
 
 .tier-status {
     font-family: 'Press Start 2P', cursive;
-    font-size: 7px;
+    font-size: 5px;
     padding: 3px 6px;
     border-radius: 5px;
     margin-top: 5px;
