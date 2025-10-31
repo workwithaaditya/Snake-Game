@@ -434,40 +434,48 @@ function updateLives() {
 }
 
 function spawnPowerFruit() {
-    // 15% chance to spawn power fruit instead of regular food
-    if (Math.random() < 0.15 && level >= 10) {
+    // spawnPowerFruit(force) -> when force=true it will try to place a power fruit
+    // otherwise it only spawns rarely during gameplay (reduced frequency)
+    const FORCE_ARG = arguments[0] === true;
+    const chance = FORCE_ARG ? 1 : 0.12; // if forced, attempt placement; otherwise 12% when called
+    if ((FORCE_ARG || Math.random() < chance) && level >= 10) {
         let validPosition = false;
         let attempts = 0;
-        
-        while (!validPosition && attempts < 50) {
-            powerFruit = {
+
+        while (!validPosition && attempts < 80) {
+            const candidate = {
                 x: Math.round(2 + (16 - 2) * Math.random()),
                 y: Math.round(2 + (16 - 2) * Math.random())
             };
-            
-            // Check if position is valid (not on snake or obstacles)
+
+            // Check if position is valid (not on snake or obstacles or food)
             validPosition = true;
             for (let segment of snakeArray) {
-                if (segment.x === powerFruit.x && segment.y === powerFruit.y) {
+                if (segment.x === candidate.x && segment.y === candidate.y) {
                     validPosition = false;
                     break;
                 }
             }
-            
-            if (validPosition && food.x === powerFruit.x && food.y === powerFruit.y) {
+
+            if (validPosition && food.x === candidate.x && food.y === candidate.y) {
                 validPosition = false;
             }
-            
+
             for (let obstacle of obstacleArray) {
-                if (obstacle.x === powerFruit.x && obstacle.y === powerFruit.y) {
+                if (obstacle.x === candidate.x && obstacle.y === candidate.y) {
                     validPosition = false;
                     break;
                 }
             }
-            
+
+            if (validPosition) {
+                powerFruit = candidate;
+                break;
+            }
+
             attempts++;
         }
-        
+
         if (!validPosition) {
             powerFruit = null;
         }
@@ -684,7 +692,8 @@ function isCollide(snake) {
 
 function generateObstacles() {
     obstacleArray = [];
-    const numObstacles = Math.min(Math.floor(score / 5) + 2, 8); // Increase obstacles with score
+    // Make obstacle growth less aggressive: fewer obstacles at lower/medium scores
+    const numObstacles = Math.min(Math.floor(score / 8) + 1, 6); // Reduced frequency and cap
     
     for (let i = 0; i < numObstacles; i++) {
         let obstaclePos;
@@ -832,8 +841,8 @@ function gameEngine() {
         }
     }
     
-    // Spawn power fruit occasionally
-    if (!powerFruit && Math.random() < 0.01 && level >= 10) {
+    // Spawn power fruit occasionally (reduced frequency)
+    if (!powerFruit && Math.random() < 0.006 && level >= 10) {
         spawnPowerFruit();
     }
     
@@ -847,6 +856,10 @@ function gameEngine() {
         updateScore();
         updateSassyBot('🍎 POWER FRUIT! Destroys obstacles!', true);
         obstacleArray = [];
+        // Rare chance to spawn another power fruit after clearing obstacles
+        if (!powerFruit && Math.random() < 0.25) {
+            spawnPowerFruit(true);
+        }
     }
     
     // Check for food consumption
@@ -1007,9 +1020,10 @@ window.addEventListener('keydown', e => {
         // Level-specific features
         if (level >= 2) {
             // Moving obstacles
-            if (Math.random() < 0.2) {
-                generateObstacles();
-            }
+                // much rarer moving-obstacle regeneration on player move
+                if (Math.random() < 0.06) {
+                    generateObstacles();
+                }
             
             // Teleporting food (Level 3+)
             if (level >= 3 && Math.random() < 0.1) {
@@ -1019,8 +1033,8 @@ window.addEventListener('keydown', e => {
     }
 
     if (moved && isDevilMode) {
-        // In devil mode, occasionally move obstacles when player moves
-        if (Math.random() < 0.3) { // 30% chance to move obstacles
+        // In devil mode, occasionally move obstacles when player moves (reduced chance)
+        if (Math.random() < 0.12) { // ~12% chance to move obstacles
             generateObstacles();
             updateSassyBot("😈 Surprise! The obstacles are alive!", true);
         }
