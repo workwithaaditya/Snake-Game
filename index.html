@@ -5,16 +5,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake mania</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <div class="body">
-        <div id="scoreBox">Score: 0</div>
+        <!-- Background Text -->
+        <div class="background-text">NOT YOUR ORDINARY SNAKE GAME</div>
+        
+        <div id="sassyBot" class="sassy-bot" style="display: none;">
+            <div class="bot-avatar">😈</div>
+            <div class="bot-message">Ready to fail again? Let's see what you've got!</div>
+        </div>
+
+        <!-- Question modal: appears every 10 points -->
+        <div id="questionModal" class="question-modal" aria-hidden="true">
+            <div class="question-card">
+                <div class="question-title">TRICKY QUESTION</div>
+                <div class="question-timer"><div class="bar" id="questionTimerBar"></div></div>
+                <div class="question-text" id="questionText">Question goes here</div>
+                <div class="choices" id="questionChoices">
+                    <!-- Buttons injected by JS -->
+                </div>
+                <div class="question-footer">
+                    <button id="skipQuestion" class="choice-btn skip">Skip (penalty)</button>
+                </div>
+            </div>
+        </div>
+        <div class="game-controls">
+            <div id="scoreBox">
+                <div class="score-title">SCORE</div>
+                <div class="score-value">0</div>
+            </div>
+            
+            <!-- Lives Display -->
+            <div id="livesBox">
+                <div class="lives-title">LIVES</div>
+                <div class="lives-hearts" id="livesHearts">
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                </div>
+            </div>
+            
+            <div class="buttons-container">
+                <button id="restartBtn" class="game-btn">Restart Game</button>
+                <button id="pauseBtn" class="game-btn">Pause</button>
+                <div class="controls-info">
+                    <p>Use Arrow Keys to Play</p>
+                    <div class="arrow-keys">
+                        <div class="key">↑</div>
+                        <div class="key-row">
+                            <div class="key">←</div>
+                            <div class="key">↓</div>
+                            <div class="key">→</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Left Side Panel -->
+        <div class="left-panel">
+            <div class="panel-section lives-section">
+                <div class="panel-title">💗 LIVES 💗</div>
+                <div class="lives-display" id="livesDisplay">
+                    <div class="life-heart">❤️</div>
+                    <div class="life-heart">❤️</div>
+                    <div class="life-heart">❤️</div>
+                </div>
+            </div>
+            
+            <div class="panel-section powerup-section">
+                <div class="panel-title">🍎 POWER FRUIT 🍎</div>
+                <div class="powerup-info">
+                    <div class="powerup-icon">🍎</div>
+                    <div class="powerup-desc">Destroys Red Obstacles!</div>
+                    <div class="powerup-chance">15% Spawn Chance</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tier System Section -->
+        <div class="tier-system">
+            <div class="tier-header">🏆 ACHIEVEMENT TIERS 🏆</div>
+            <div class="tier-cards">
+                <div class="tier-card elite" id="tierElite">
+                    <div class="tier-badge">
+                        <div class="tier-icon">⚡</div>
+                        <div class="tier-glow"></div>
+                    </div>
+                    <div class="tier-name">ELITE</div>
+                    <div class="tier-level">Level 20</div>
+                    <div class="tier-tagline">"The Chosen One"</div>
+                    <div class="tier-status locked" id="eliteStatus">🔒 LOCKED</div>
+                </div>
+                
+                <div class="tier-card legendary" id="tierLegendary">
+                    <div class="tier-badge">
+                        <div class="tier-icon">👑</div>
+                        <div class="tier-glow"></div>
+                    </div>
+                    <div class="tier-name">LEGENDARY</div>
+                    <div class="tier-level">Level 50</div>
+                    <div class="tier-tagline">"Master of Serpents"</div>
+                    <div class="tier-status locked" id="legendaryStatus">🔒 LOCKED</div>
+                </div>
+                
+                <div class="tier-card mythic" id="tierMythic">
+                    <div class="tier-badge">
+                        <div class="tier-icon">🔥</div>
+                        <div class="tier-glow"></div>
+                    </div>
+                    <div class="tier-name">MYTHIC</div>
+                    <div class="tier-level">Level 100</div>
+                    <div class="tier-tagline">"Immortal Legend"</div>
+                    <div class="tier-status locked" id="mythicStatus">🔒 LOCKED</div>
+                </div>
+            </div>
+        </div>
+        
         <div id="board"></div>
     </div>
-
-
+    <!-- Explosion overlay (used for bomb timeout) -->
+    <div id="explosion" class="explosion" aria-hidden="true"></div>
     <script src="js/index.js"></script>
 </body>
 
