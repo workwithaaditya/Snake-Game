@@ -1305,6 +1305,45 @@
 }
 
 /* Responsive adjustments */
+@media (max-width: 700px) {
+    .left-panel {
+        left: 10px;
+        top: 10px;
+        width: 90px;
+        padding: 4px;
+        z-index: 100;
+    }
+    .tier-system {
+        left: 10px;
+        bottom: 10px;
+        max-width: 98vw;
+        padding: 4px;
+        z-index: 99;
+    }
+    .tier-card {
+        width: 55px;
+        padding: 2px;
+    }
+    .sassy-bot {
+        right: 10px;
+        bottom: 10px;
+        width: 120px;
+        padding: 6px;
+        font-size: 10px;
+        z-index: 2000;
+    }
+    .sassy-bot.show, .sassy-bot.center-popup {
+        left: 50% !important;
+        top: 50% !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: translate(-50%, -50%) scale(0.9) !important;
+    }
+    .background-text {
+        font-size: 24px;
+        letter-spacing: 2px;
+    }
+}
 @media (max-width: 768px) {
     .tier-system {
         bottom: 10px;
