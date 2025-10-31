@@ -314,6 +314,20 @@
     margin-bottom: 30px;
     line-height: 1.6;
     text-shadow: 0 0 10px rgba(255, 0, 255, 0.8);
+    word-break: break-word;
+    max-width: 90vw;
+    overflow-wrap: break-word;
+    white-space: normal;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 700px) {
+    .end-quote {
+        font-size: 11px;
+        padding: 0 2vw;
+        max-width: 98vw;
+    }
 }
 
 .end-score {
