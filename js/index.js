@@ -1061,3 +1061,173 @@ pauseBtn.addEventListener('click', () => {
 
 // Start the random popups
 scheduleRandomPopup();
+
+// ===== MOBILE TOUCH CONTROLS =====
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+const minSwipeDistance = 30; // Minimum distance for a swipe to register
+
+document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+}, false);
+
+document.addEventListener('touchend', (e) => {
+    if (isPaused) return;
+    
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+}, false);
+
+function handleSwipe() {
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+    
+    // Check if swipe distance is significant enough
+    if (Math.abs(diffX) < minSwipeDistance && Math.abs(diffY) < minSwipeDistance) {
+        return;
+    }
+    
+    // Determine swipe direction
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+        // Horizontal swipe
+        if (diffX > 0 && lastDirection !== 'left') {
+            // Swipe right
+            inputDir = { x: 1, y: 0 };
+            lastDirection = 'right';
+            moveSound.play();
+        } else if (diffX < 0 && lastDirection !== 'right') {
+            // Swipe left
+            inputDir = { x: -1, y: 0 };
+            lastDirection = 'left';
+            moveSound.play();
+        }
+    } else {
+        // Vertical swipe
+        if (diffY > 0 && lastDirection !== 'up') {
+            // Swipe down
+            inputDir = { x: 0, y: 1 };
+            lastDirection = 'down';
+            moveSound.play();
+        } else if (diffY < 0 && lastDirection !== 'down') {
+            // Swipe up
+            inputDir = { x: 0, y: -1 };
+            lastDirection = 'up';
+            moveSound.play();
+        }
+    }
+    
+    // Trigger level-specific features on mobile swipe
+    if (level >= 2) {
+        if (Math.random() < 0.06) {
+            generateObstacles();
+        }
+        if (level >= 3 && Math.random() < 0.1) {
+            food = generateNewFood();
+        }
+    }
+    
+    if (isDevilMode) {
+        if (Math.random() < 0.12) {
+            generateObstacles();
+            updateSassyBot("😈 Surprise! The obstacles are alive!", true);
+        }
+    }
+}
+
+// ===== VIRTUAL MOBILE BUTTON CONTROLS =====
+const btnUp = document.getElementById('btnUp');
+const btnDown = document.getElementById('btnDown');
+const btnLeft = document.getElementById('btnLeft');
+const btnRight = document.getElementById('btnRight');
+
+function handleVirtualButton(direction) {
+    if (isPaused) return;
+    
+    let moved = true;
+    
+    switch(direction) {
+        case 'up':
+            if (lastDirection !== 'down') {
+                inputDir = { x: 0, y: -1 };
+                lastDirection = 'up';
+            }
+            break;
+        case 'down':
+            if (lastDirection !== 'up') {
+                inputDir = { x: 0, y: 1 };
+                lastDirection = 'down';
+            }
+            break;
+        case 'left':
+            if (lastDirection !== 'right') {
+                inputDir = { x: -1, y: 0 };
+                lastDirection = 'left';
+            }
+            break;
+        case 'right':
+            if (lastDirection !== 'left') {
+                inputDir = { x: 1, y: 0 };
+                lastDirection = 'right';
+            }
+            break;
+        default:
+            moved = false;
+    }
+    
+    if (moved) {
+        moveSound.play();
+        
+        // Trigger level-specific features
+        if (level >= 2) {
+            if (Math.random() < 0.06) {
+                generateObstacles();
+            }
+            if (level >= 3 && Math.random() < 0.1) {
+                food = generateNewFood();
+            }
+        }
+        
+        if (isDevilMode && Math.random() < 0.12) {
+            generateObstacles();
+            updateSassyBot("😈 Surprise! The obstacles are alive!", true);
+        }
+    }
+}
+
+// Add event listeners to virtual buttons if they exist
+if (btnUp) {
+    btnUp.addEventListener('click', () => handleVirtualButton('up'));
+    btnUp.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        handleVirtualButton('up');
+    });
+}
+
+if (btnDown) {
+    btnDown.addEventListener('click', () => handleVirtualButton('down'));
+    btnDown.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        handleVirtualButton('down');
+    });
+}
+
+if (btnLeft) {
+    btnLeft.addEventListener('click', () => handleVirtualButton('left'));
+    btnLeft.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        handleVirtualButton('left');
+    });
+}
+
+if (btnRight) {
+    btnRight.addEventListener('click', () => handleVirtualButton('right'));
+    btnRight.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        handleVirtualButton('right');
+    });
+}

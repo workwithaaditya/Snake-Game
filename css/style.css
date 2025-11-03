@@ -1442,3 +1442,346 @@
     display: inline-block;
     margin-top: 5px;
 }
+
+/* ===== MOBILE-SPECIFIC OPTIMIZATIONS ===== */
+@media (max-width: 768px) {
+    /* Mobile viewport optimization */
+    .body {
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+        padding: 10px 0;
+    }
+    
+    /* Make board take most of mobile screen */
+    #board {
+        width: min(95vw, 95vh);
+        height: min(95vw, 95vh);
+        margin: 0 auto;
+    }
+    
+    /* Hide or minimize sassy bot on small screens */
+    .sassy-bot {
+        display: none !important;
+    }
+    
+    /* Compact background text */
+    .background-text {
+        font-size: clamp(16px, 5vw, 32px);
+        letter-spacing: 2px;
+    }
+    
+    /* Mobile-optimized left panel */
+    .left-panel {
+        top: 10px;
+        left: 5px;
+        width: clamp(100px, 25vw, 140px);
+        padding: 6px 8px;
+        font-size: 7px;
+    }
+    
+    .panel-title {
+        font-size: clamp(7px, 1.8vw, 9px);
+        margin-bottom: 8px;
+    }
+    
+    .life-heart {
+        font-size: clamp(12px, 3.5vw, 18px);
+    }
+    
+    .powerup-icon {
+        font-size: clamp(16px, 4.5vw, 24px);
+    }
+    
+    .powerup-desc {
+        font-size: 7px;
+    }
+    
+    /* Mobile tier system */
+    .tier-system {
+        bottom: 10px;
+        left: 5px;
+        width: 95vw;
+        max-width: none;
+        padding: 8px 4px;
+    }
+    
+    .tier-header {
+        font-size: clamp(7px, 2vw, 10px);
+        margin-bottom: 8px;
+    }
+    
+    .tier-cards {
+        gap: 6px;
+        justify-content: space-around;
+    }
+    
+    .tier-card {
+        width: clamp(70px, 28vw, 100px);
+        padding: 6px 4px;
+    }
+    
+    .tier-badge {
+        width: clamp(24px, 7vw, 36px);
+        height: clamp(24px, 7vw, 36px);
+    }
+    
+    .tier-icon {
+        font-size: clamp(14px, 4vw, 20px);
+    }
+    
+    .tier-name {
+        font-size: clamp(6px, 1.8vw, 9px);
+    }
+    
+    .tier-level {
+        font-size: clamp(5px, 1.3vw, 7px);
+    }
+    
+    .tier-tagline {
+        font-size: clamp(4px, 1.1vw, 6px);
+        line-height: 1.3;
+    }
+    
+    .tier-status {
+        font-size: clamp(5px, 1.3vw, 7px);
+        padding: 2px 4px;
+    }
+    
+    /* Score and controls */
+    #scoreBox {
+        font-size: clamp(12px, 3.5vw, 18px);
+        padding: 8px 15px;
+        top: 10px;
+    }
+    
+    .controls {
+        gap: 8px;
+        padding: 8px;
+    }
+    
+    .controls button {
+        padding: 8px 15px;
+        font-size: clamp(8px, 2.5vw, 12px);
+    }
+    
+    /* Level display */
+    .level-display {
+        font-size: clamp(14px, 4vw, 20px);
+        padding: 8px 15px;
+        top: 60px;
+    }
+    
+    /* Credits */
+    .credits {
+        font-size: 6px;
+        bottom: 5px;
+        right: 5px;
+    }
+    
+    .credit-link {
+        font-size: 6px;
+    }
+    
+    .credit-note {
+        font-size: 5px;
+    }
+    
+    /* Game over and modals on mobile */
+    .end-screen-content {
+        padding: 20px 15px;
+        max-width: 90vw;
+    }
+    
+    .end-devil {
+        font-size: 80px;
+    }
+    
+    .end-quote {
+        font-size: 9px;
+        line-height: 1.5;
+    }
+    
+    .score-number {
+        font-size: clamp(32px, 10vw, 48px);
+    }
+    
+    .end-btn {
+        padding: 12px 20px;
+        font-size: 10px;
+    }
+    
+    /* Question modal mobile optimization */
+    .question-modal {
+        padding: 15px;
+        max-width: 90vw;
+    }
+    
+    #questionText {
+        font-size: 10px;
+        line-height: 1.5;
+    }
+    
+    .choice-btn {
+        padding: 10px;
+        font-size: 9px;
+    }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+    .left-panel {
+        width: clamp(90px, 28vw, 120px);
+    }
+    
+    .tier-system {
+        padding: 6px 2px;
+    }
+    
+    .tier-card {
+        width: clamp(60px, 30vw, 85px);
+        padding: 4px 2px;
+    }
+    
+    .tier-name {
+        font-size: 6px;
+    }
+    
+    .tier-tagline {
+        display: none; /* Hide tagline on very small screens */
+    }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 900px) and (orientation: landscape) {
+    .body {
+        padding: 5px 0;
+    }
+    
+    #board {
+        width: min(60vw, 85vh);
+        height: min(60vw, 85vh);
+    }
+    
+    .tier-system {
+        bottom: 5px;
+        left: 5px;
+        max-width: 45vw;
+    }
+    
+    .left-panel {
+        top: 5px;
+        left: 5px;
+    }
+    
+    #scoreBox {
+        top: 5px;
+    }
+    
+    .level-display {
+        top: 40px;
+    }
+}
+
+/* Prevent zoom on double-tap for mobile */
+* {
+    touch-action: manipulation;
+}
+
+/* ===== MOBILE VIRTUAL CONTROLS ===== */
+.mobile-controls {
+    display: none; /* Hidden by default, shown on mobile */
+    position: fixed;
+    bottom: 120px;
+    right: 20px;
+    width: 140px;
+    height: 140px;
+    z-index: 1000;
+}
+
+.dpad-btn {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, rgba(120, 0, 255, 0.8), rgba(0, 255, 255, 0.6));
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.5),
+        inset 0 0 10px rgba(255, 255, 255, 0.2);
+    transition: all 0.15s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.dpad-btn:active {
+    transform: scale(0.9);
+    box-shadow: 
+        0 0 30px rgba(0, 255, 255, 0.8),
+        inset 0 0 20px rgba(255, 255, 255, 0.4);
+    background: linear-gradient(135deg, rgba(255, 0, 255, 0.9), rgba(0, 255, 255, 0.8));
+}
+
+.dpad-up {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.dpad-left {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.dpad-down {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.dpad-right {
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+/* Show virtual controls only on mobile/touch devices */
+@media (max-width: 768px) and (hover: none) and (pointer: coarse) {
+    .mobile-controls {
+        display: block;
+    }
+}
+
+/* Adjust control position for small screens */
+@media (max-width: 480px) {
+    .mobile-controls {
+        width: 120px;
+        height: 120px;
+        bottom: 100px;
+        right: 10px;
+    }
+    
+    .dpad-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
+    }
+}
+
+/* Landscape mobile - move controls to right side */
+@media (max-width: 900px) and (orientation: landscape) and (hover: none) {
+    .mobile-controls {
+        bottom: 50%;
+        transform: translateY(50%);
+        right: 10px;
+        width: 120px;
+        height: 120px;
+    }
+}
